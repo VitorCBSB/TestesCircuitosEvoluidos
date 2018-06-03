@@ -1,0 +1,30 @@
+module JK3
+	( input [1:0] in
+	, output out
+	);
+	
+	parameter NUM_GATES = 6;
+	
+	wire [NUM_GATES - 1:0] LW;
+	wire [NUM_GATES - 1:0] w;
+	
+	genvar i;
+	generate for (i = 0; i < NUM_GATES; i++)
+	begin : L
+		LCELL lcell_inst
+		   ( .in (LW[i])
+			, .out (w[i])
+			);
+	end
+	endgenerate
+	
+	and (LW[0], w[5], w[4]);
+	xor (LW[1], in[1], w[2]);
+	nor (LW[2], w[3], w[4]);
+	xor (LW[3], in[1], in[0]);
+	nor (LW[4], w[5], w[2]);
+	and (LW[5], w[1], w[3]);
+	
+	assign out = w[1];
+	
+endmodule
