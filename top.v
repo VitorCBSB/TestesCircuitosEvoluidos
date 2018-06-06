@@ -40,6 +40,9 @@ module top
 	FFD2 ffd2 (SW, outs[26]);
 	FFD3 ffd3 (SW, outs[27]);
 	FFD4 ffd4 (SW, outs[28]);
+	P1 p1 (SW, outs[29]);
+	P2 p2 (SW, outs[30]);
+	P3 p3 (SW, outs[31]);
 	
 	wire [3:0] ones;
 	wire [3:0] tens;
